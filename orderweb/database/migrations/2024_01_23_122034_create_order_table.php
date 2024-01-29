@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('legalization_date')->comment('fecha legalización');
             $table->string('address',50)->comment('direción');
             $table->string('city',50)->comment('ciudad');
-            $table->foreignId('observation-id')->nullable()
+            $table->foreignId('observation_id')->nullable()
                     ->constrained('observation')
                     ->onDelete('cascade')->onUpdate('cascade');
             $table->foreignId('causal_id')->nullable()
