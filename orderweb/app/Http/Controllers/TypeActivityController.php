@@ -16,7 +16,7 @@ class TypeActivityController extends Controller
         return view('type_activity.index', compact('type_activities')); 
     }
 
-    /**
+    /**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
      * Show the form for creating a new resource.
      */
     public function create()
