@@ -29,18 +29,20 @@ class TechnicianController extends Controller
      */
     public function store(Request $request)
     {
-        //document no es autoincemental, por tanto se consulta si ya existe un tecnico con ese document
-        $technician = Technician::where('document', '=', $request->document)->first();
+        //document no es un autoinc, por lo tanto se cosulta si ya existe un tecnico con este document
+        $technician = Technician::where('document' , '=' , $request->document)->first();
+
         if($technician)
         {
-            session()->flash('error','Ya existe un tecnico con ese documento');
+            session()->flash('error' , 'Ya existe un tecnico con ese documento');
             return redirect()->route('technician.create');
         }
 
-            $technician = Technician::create($request->all());
-            session()->flash('message','Registro Creado extitosamente');
-            return redirect()->route('technician.index');
-        }
+        $technician = Technician::create($request->all());
+        session()->flash('message' , 'Registro creado exitosamente');
+        return redirect()->route('technician.index');
+
+    }
 
     /**
      * Display the specified resource.
@@ -55,14 +57,15 @@ class TechnicianController extends Controller
      */
     public function edit(string $id)
     {
-        $technician = Technician::where('document', '=', $id)->first();
-
+        $technician = Technician::where('document' , '=' , $id)->first();
         if($technician)
-        {   
-            return view('technician.edit', compact('technician'));   
+        {
+            return view('technician.edit', compact('technician'));
         }
-        session()->flash('warning','No se encuentra el registro solicitado');
+
+        session()->flash('warning' , 'No se encuentra el registo solicitado');
         return redirect()->route('technician.index');
+
 
     }
 
@@ -71,22 +74,23 @@ class TechnicianController extends Controller
      */
     public function update(Request $request, string $document)
     {
-        $technician = Technician::where('document', '=', $document)->first();
-
+        $technician = Technician::where('document' , '=' , $document)->first();
         if($technician)
-        {   
+        {
             $technician->name = $request->name;
             $technician->especiality = $request->especiality;
             $technician->phone = $request->phone;
             $technician->save();
-            session()->flash('message', 'Registro actualizado exitosamente');  
-
+            session()->flash('message' , 'Registro actualizado exitosamente');
         }
+
         else
         {
-            session()->flash('warning', ' No se encuentra el registro solicitado');
+            session()->flash('warning' , 'No se encuentra el registro solicitado');
         }
+
         return redirect()->route('technician.index');
+
     }
 
     /**
@@ -94,19 +98,18 @@ class TechnicianController extends Controller
      */
     public function destroy(string $id)
     {
-        
-        $technician = Technician::where('document', '=', $id)->first();
-
+        $technician = Technician::where('document' , '=' , $id)->first();
         if($technician)
-        {   
+        {
             $technician->delete();
-            session()->flash('message', 'Registro eliminado exitosamente');  
-
+            session()->flash('message' , 'Registro eliminado exitosamente');
         }
+
         else
         {
-            session()->flash('warning', ' No se encuentra el registro solicitado');
+            session()->flash('warning' , 'No se encuentra el registro solicitado');
         }
+
         return redirect()->route('technician.index');
     }
 }

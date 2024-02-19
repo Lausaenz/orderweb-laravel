@@ -12,8 +12,9 @@ class ObservationController extends Controller
      */
     public function index()
     {
-        $observations = Observation::all();  //select * from causal
-        return view('observation.index', compact('observations'));  
+        $observations = Observation::all();    //select * from causal
+        //dd($causals);
+        return view('observation.index', compact('observations'));
     }
 
     /**
@@ -22,6 +23,7 @@ class ObservationController extends Controller
     public function create()
     {
         return view('observation.create');
+
     }
 
     /**
@@ -48,7 +50,7 @@ class ObservationController extends Controller
     public function edit(string $id)
     {
         $observation = Observation::find($id);
-        if($observation)  // si la observacion existe
+        if($observation)
         {
             return view('observation.edit', compact('observation'));
         }
@@ -64,16 +66,18 @@ class ObservationController extends Controller
     public function update(Request $request, string $id)
     {
         $observation = Observation::find($id);
-        if($observation)  // si la causal existe
+        if($observation)
         {
-           $observation->update($request->all()); //update causal set description =...
-           session()->flash('message', 'Registro actualizado exitosamente');
-
+            $observation->update($request->all()); //Delete from causal where id = x
+            session()->flash('message', 'Registro eliminado exitosamente');
         }
         else
         {
-            session()->flash('warning', 'No se encuentra el registro solicitado'); 
+            return redirect()->route('observation.index');
+            session()->flash('warning', 'No se encuentra el registro solicitado');
+
         }
+
         return redirect()->route('observation.index');
     }
 
@@ -83,16 +87,18 @@ class ObservationController extends Controller
     public function destroy(string $id)
     {
         $observation = Observation::find($id);
-        if($observation)  // si la causal existe
+        if($observation)
         {
-           $observation->delete(); //delete from causal where id = x
-           session()->flash('message', 'Registro eliminado exitosamente');
-
+            $observation->delete(); //Delete from observation where id = x
+            session()->flash('message', 'Registro eliminado exitosamente');
         }
         else
         {
-            session()->flash('warning', 'No se encuentra el registro solicitado'); 
+            return redirect()->route('observation.index');
+            session()->flash('warning', 'No se encuentra el registro solicitado');
+
         }
+
         return redirect()->route('observation.index');
     }
 }

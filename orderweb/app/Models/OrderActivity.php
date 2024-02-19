@@ -8,19 +8,23 @@ use Illuminate\Database\Eloquent\Model;
 class OrderActivity extends Model
 {
     use HasFactory;
-    protected $table = 'order_activity';
-    protected $fillable = ['order_id',
-        'activity_id'
-    ];
 
+    protected $table = 'order_activity';
+
+    protected $fillable = [
+
+        'order_id',
+        'activity_id',
+        
+    ];
     public function order()
     {
         return $this->belongsTo(Order::class);
-    }
 
-    public function activity()
-    {
-       return $this->belongsTo(Activity::class);
     }
-    
+    public function actvity()
+    {
+        return $this->belongsTo(Activity::class);
+
+    }
 }

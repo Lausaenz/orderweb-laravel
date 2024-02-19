@@ -17,11 +17,9 @@ class TechnicianFactory extends Factory
     public function definition(): array
     {
         return [
-            'document'=> fake()->unique()->numberBetween(1000000000, 9999999999),
-            'name'=> fake()->name(),
-            'phone'=> fake()->phoneNumber()
-
-
+            'document' => fake() ->unique()->numberBetween(1000000000 , 9999999999 ) ,
+            'name' => fake() ->name(),
+            'phone' => fake() ->phoneNumber()
         ];
     }
 }

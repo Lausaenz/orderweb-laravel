@@ -21,15 +21,15 @@
                 </thead>
                 <tbody>
                     @foreach ($causals as $causal)
-                        
+                    
                         <tr>
-                            <td>{{ $causal['id'] }}</td>
-                            <td>{{ $causal['description'] }}</td>
+                            <td>{{ $causal ['id'] }}</td>
+                            <td>{{ $causal ['description'] }}</td>
                             <td>
-                                <a href="{{ route('causal.edit',$causal['id']) }}" title="editar" class="btn btn-info btn-circle btn-sm">
+                                <a href="{{ route ('causal.edit', $causal['id']) }}" title="editar" class="btn btn-info btn-circle btn-sm">
                                     <i class="far fa-edit"></i>
                                 </a>
-                                <a href="{{ route('causal.destroy',$causal['id']) }}" title="eliminar" class="btn btn-danger btn-circle btn-sm" onclick="return remove();">
+                                <a href="{{ route ('causal.destroy', $causal['id']) }}" title="eliminar" class="btn btn-danger btn-circle btn-sm" onclick="return remove();">
                                     <i class="fas fa-trash"></i>
                                 </a>
                             </td>

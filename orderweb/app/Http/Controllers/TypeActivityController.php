@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Observation;
 use App\Models\TypeActivity;
 use Illuminate\Http\Request;
 
@@ -12,16 +13,18 @@ class TypeActivityController extends Controller
      */
     public function index()
     {
-        $type_activities = TypeActivity::all();  //select * from causal
-        return view('type_activity.index', compact('type_activities')); 
+        $type_activities = TypeActivity::all();    //select * from causal
+        //dd($causals);
+        return view('type_activity.index', compact('type_activities'));
     }
 
-    /**                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+    /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
         return view('type_activity.create');
+
     }
 
     /**
@@ -48,7 +51,7 @@ class TypeActivityController extends Controller
     public function edit(string $id)
     {
         $type_activity = TypeActivity::find($id);
-        if($type_activity)  // si la observacion existe
+        if($type_activity)
         {
             return view('type_activity.edit', compact('type_activity'));
         }
@@ -64,16 +67,18 @@ class TypeActivityController extends Controller
     public function update(Request $request, string $id)
     {
         $type_activity = TypeActivity::find($id);
-        if($type_activity)  // si la causal existe
+        if($type_activity)
         {
-           $type_activity->update($request->all()); //update causal set description =...
-           session()->flash('message', 'Registro actualizado exitosamente');
-
+            $type_activity->update($request->all()); //Delete from causal where id = x
+            session()->flash('message', 'Registro eliminado exitosamente');
         }
         else
         {
-            session()->flash('warning', 'No se encuentra el registro solicitado'); 
+            return redirect()->route('type_activity.index');
+            session()->flash('warning', 'No se encuentra el registro solicitado');
+
         }
+
         return redirect()->route('type_activity.index');
     }
 
@@ -83,16 +88,18 @@ class TypeActivityController extends Controller
     public function destroy(string $id)
     {
         $type_activity = TypeActivity::find($id);
-        if($type_activity)  // si la causal existe
+        if($type_activity)
         {
-           $type_activity->delete(); //delete from causal where id = x
-           session()->flash('message', 'Registro eliminado exitosamente');
-
+            $type_activity->delete(); //Delete from causal where id = x
+            session()->flash('message', 'Registro eliminado exitosamente');
         }
         else
         {
-            session()->flash('warning', 'No se encuentra el registro solicitado'); 
+            return redirect()->route('type_activity.index');
+            session()->flash('warning', 'No se encuentra el registro solicitado');
+
         }
+
         return redirect()->route('type_activity.index');
     }
 }

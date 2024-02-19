@@ -12,8 +12,9 @@ class Technician extends Model
     protected $table = 'technician';
     public $incrementing = false;
     protected $primaryKey = 'document';
-    protected $fillable = 
-    [   'document',
+    protected $fillable = [
+
+        'document',
         'name',
         'especiality',
         'phone'
@@ -23,6 +24,4 @@ class Technician extends Model
     {
         return $this->hasMany(Activity::class);
     }
-
-
 }

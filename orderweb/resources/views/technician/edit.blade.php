@@ -5,7 +5,7 @@
     @include('templates.messages')
     <div class="row">
         <div class="col-lg-12 mb-4">
-            <form action="{{ route('technician.update', $technician['document']) }}" method="POST">
+            <form action="{{ route('technician.update' , $technician['document']) }}" method="POST">
                 @csrf
                 @method('PUT')
                 <div class="row form-group">
@@ -29,10 +29,8 @@
                     id="especiality" name="especiality" required
                     value="{{ $technician['especiality'] }}">
                   
-                    
-
-                    </div>
-                    <div class="col-lg-6 mb-4">
+                </div>
+                <div class="col-lg-6 mb-4">
                         <label for="phone">Telefono</label>
                         <input type="number" class="form-control"
                         id="phone" name="phone" required
