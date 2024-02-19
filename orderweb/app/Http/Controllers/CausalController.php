@@ -4,9 +4,24 @@ namespace App\Http\Controllers;
 
 use App\Models\Causal;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class CausalController extends Controller
+
 {
+    private $rules =[
+        'description' =>'required|string|max:100|min:3',
+        
+    ];
+
+    private $traductionAtributes = [
+        'description' => 'descripción',  
+
+    ];
+
+
+
+
     /**
      * Display a listing of the resource.
      */
@@ -30,6 +45,14 @@ class CausalController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), $this->rules);
+        $validator->setAttributeNames($this->traductionAtributes);
+        if($validator->fails())
+        {
+            $errors = $validator->errors();
+            return redirect()->route('causal.create')->withInput()->withErrors($errors);
+        }
+
         $causal = Causal::create($request->all());
         session()->flash('message', 'Registro creado exitosamente');
         return redirect()->route('causal.index');
@@ -64,6 +87,16 @@ class CausalController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $validator = Validator::make($request->all(), $this->rules);
+        $validator->setAttributeNames($this->traductionAtributes);
+        if($validator->fails())
+        {
+            $errors = $validator->errors();
+            return redirect()->route('causal.edit', $id)->withInput()->withErrors($errors);
+        }
+
+
+
         $causal = Causal::find($id);
         if($causal)
         {

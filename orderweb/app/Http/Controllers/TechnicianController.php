@@ -4,9 +4,27 @@ namespace App\Http\Controllers;
 
 use App\Models\Technician;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class TechnicianController extends Controller
 {
+
+    private $rules =[
+        'document' =>'required|integer|max:99999999999999999999|min:3',
+        'name' => 'required|string|max:80|min:3',
+        'especiallity' => 'string|max:50|min:3',
+        'phone' => 'string|max:30'
+    ];
+
+    private $traductionAtributes = [
+        'document' => 'documento',
+        'name' => 'nombre',
+        'especiallity' => 'especialidad',
+        'phone' => 'telefono'
+        
+
+    ];
+
     /**
      * Display a listing of the resource.
      */
@@ -29,6 +47,13 @@ class TechnicianController extends Controller
      */
     public function store(Request $request)
     {
+        $validator = Validator::make($request->all(), $this->rules);
+        $validator->setAttributeNames($this->traductionAtributes);
+        if($validator->fails())
+        {
+            $errors = $validator->errors();
+            return redirect()->route('technician.create')->withInput()->withErrors($errors);
+        }
         //document no es un autoinc, por lo tanto se cosulta si ya existe un tecnico con este document
         $technician = Technician::where('document' , '=' , $request->document)->first();
 
@@ -74,6 +99,15 @@ class TechnicianController extends Controller
      */
     public function update(Request $request, string $document)
     {
+
+        $validator = Validator::make($request->all(), $this->rules);
+        $validator->setAttributeNames($this->traductionAtributes);
+        if($validator->fails())
+        {
+            $errors = $validator->errors();
+            return redirect()->route('technician.edit', $document)->withInput()->withErrors($errors);
+        }
+
         $technician = Technician::where('document' , '=' , $document)->first();
         if($technician)
         {

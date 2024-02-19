@@ -26,14 +26,14 @@
                     <div class="col-lg-6 mb-4">
                     <label for="especiality">Especialidad</label>
                     <input type="text" class="form-control"
-                    id="especiality" name="especiality" required
+                    id="especiality" name="especiality" 
                     value="{{ $technician['especiality'] }}">
                   
                 </div>
                 <div class="col-lg-6 mb-4">
                         <label for="phone">Telefono</label>
                         <input type="number" class="form-control"
-                        id="phone" name="phone" required
+                        id="phone" name="phone" 
                         value="{{ $technician['phone'] }}">
                         </div>
                 </div>
