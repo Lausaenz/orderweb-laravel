@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Validator;
 class ObservationController extends Controller
 {
     private $rules =[
-        'description' =>'required|string|max:100|min:3',
+        'description' =>'required|string|max:50|min:3',
         
     ];
 

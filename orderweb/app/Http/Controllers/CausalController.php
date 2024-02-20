@@ -10,11 +10,11 @@ class CausalController extends Controller
 
 {
     private $rules =[
-        'description' =>'required|string|max:100|min:3',
+        'description' =>'required|string|max:50|min:3',
         
     ];
 
-    private $traductionAtributes = [
+    private $traductionAttributes = [
         'description' => 'descripción',  
 
     ];
@@ -46,7 +46,7 @@ class CausalController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), $this->rules);
-        $validator->setAttributeNames($this->traductionAtributes);
+        $validator->setAttributeNames($this->traductionAttributes);
         if($validator->fails())
         {
             $errors = $validator->errors();
@@ -88,7 +88,7 @@ class CausalController extends Controller
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(), $this->rules);
-        $validator->setAttributeNames($this->traductionAtributes);
+        $validator->setAttributeNames($this->traductionAttributes);
         if($validator->fails())
         {
             $errors = $validator->errors();

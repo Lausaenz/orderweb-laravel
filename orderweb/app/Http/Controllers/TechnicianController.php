@@ -10,7 +10,7 @@ class TechnicianController extends Controller
 {
 
     private $rules =[
-        'document' =>'required|integer|max:99999999999999999999|min:3',
+        'document' =>'required|integer|max:99999999999999999999|min:1',
         'name' => 'required|string|max:80|min:3',
         'especiallity' => 'string|max:50|min:3',
         'phone' => 'string|max:30'

@@ -18,7 +18,7 @@ class ActivityController extends Controller
         'type_id' => 'required|numeric|max:99999999999999999999'
     ];
 
-    private $traductionAtributes = [
+    private $traductionAttributes = [
         'description' => 'descripción',
         'hours' => 'horas',
         'technician_id' => 'técnico',
@@ -54,7 +54,7 @@ class ActivityController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), $this->rules);
-        $validator->setAttributeNames($this->traductionAtributes);
+        $validator->setAttributeNames($this->traductionAttributes);
         if($validator->fails())
         {
             $errors = $validator->errors();
@@ -97,7 +97,7 @@ class ActivityController extends Controller
     public function update(Request $request, string $id)
     {
         $validator = Validator::make($request->all(), $this->rules);
-        $validator->setAttributeNames($this->traductionAtributes);
+        $validator->setAttributeNames($this->traductionAttributes);
         if($validator->fails())
         {
             $errors = $validator->errors();
