@@ -15,10 +15,10 @@
                         value="{{ old('legalization_date') }}">
                     </div>
                     <div class="col-lg-4 mb-4">
-                        <label for="addres">Dirección</label>
+                        <label for="address">Dirección</label>
                         <input type="text" class="form-control"
-                        id="addres" name="addres" required
-                        value="{{ old('addres') }}">
+                        id="address" name="address" 
+                        value="{{ old('address') }}">
                     </div>
 
                    

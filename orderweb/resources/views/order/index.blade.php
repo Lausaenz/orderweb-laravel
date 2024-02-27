@@ -30,7 +30,7 @@
                     <tr>
                         <td>{{ $order['id'] }}</td>
                         <td>{{ $order['legalization_date'] }}</td>
-                        <td>{{ $order['addres'] }}</td>
+                        <td>{{ $order['address'] }}</td>
                         <td>{{ $order['city'] }}</td>
                         <td>{{ optional($order->observation)->description ??  '' }}</td>
                         <td>{{ optional($order->causal)->description ??  ''  }}</td>

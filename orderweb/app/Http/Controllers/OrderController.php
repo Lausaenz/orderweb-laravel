@@ -17,7 +17,7 @@ class OrderController extends Controller
 
     private $rules =[
         'legalization_date' =>'required|date|date_format:Y-m-d',
-        'adress' => 'required|string|max:50|min:3',
+        'address' => 'required|string|max:50|min:3',
         'city' => 'required|string|max:50|min:3',
         'observation_id' => 'numeric',
         'causal_id' => 'required|numeric'
@@ -25,7 +25,7 @@ class OrderController extends Controller
 
     private $traductionAtributes = [
         'legalization_date' => 'Fecha de legalización',
-        'adress' => 'dirección',
+        'address' => 'dirección',
         'city' => 'ciudad',
         'observation_id' => 'obsevación',
         'causal_id' => 'causal'
